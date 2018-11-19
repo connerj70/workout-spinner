@@ -1,5 +1,11 @@
 
-//IIFE to prevent polluting scope the function will run then save a spin function to the variable spin. You can then call this spin function whenever you would like to start the spin
+//Instructions
+
+//1. Pass your array into the scroll function on line 93
+//2. Call the spin function when you would like to start the spin
+let exampleArray = ['pic1', 0.1, 'pic2', 0.1, 'pic3', 0.1, 'pic4', 0.7, 'pic4']
+
+//IIFE to prevent polluting scope. The function will run then save a spin function to the variable spin. You can then call this spin function whenever you would like to start the spin
 var spin = (function scroll(arr) {
 	// arr1 is the array that will be passed to the fillScroller function
 	var arr1 = arr;
@@ -84,4 +90,4 @@ var spin = (function scroll(arr) {
 
 return spin;
 
-})(['pic1', 0.1, 'pic2', 0.1, 'pic3', 0.1, 'pic4', 0.7, 'pic1']);
+})(exampleArray);
