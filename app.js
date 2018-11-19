@@ -84,4 +84,4 @@ var spin = (function scroll(arr) {
 
 return spin;
 
-})(['pic1', 0.1, 'pic2', 0.1, 'pic3', 0.1, 'pic4', 0.7, 'pic4']);
+})(['pic1', 0.1, 'pic2', 0.1, 'pic3', 0.1, 'pic4', 0.7, 'pic1']);
