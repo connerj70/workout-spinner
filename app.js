@@ -1,9 +1,9 @@
 
 //Instructions
 
-//1. Pass your array into the scroll function on line 93
+//1. Pass your array into the scroll function on line 106
 //2. Call the spin function when you would like to start the spin
-let exampleArray = ['pic1', 0.1, 'pic2', 0.1, 'pic3', 0.1, 'pic4', 0.7, 'pic4']
+var exampleArray = ['pic1', 0.1, 'pic2', 0.1, 'pic3', 0.1, 'pic4', 0.7, 'pic2']
 
 //IIFE to prevent polluting scope. The function will run then save a spin function to the variable spin. You can then call this spin function whenever you would like to start the spin
 var spin = (function scroll(arr) {
@@ -40,10 +40,12 @@ var spin = (function scroll(arr) {
 		pictureArray.splice(60, 1, arr[arr.length - 1]);
 
 		//loop over the array and create an image for each entry
+
 		for(var i=0; i < pictureArray.length; i++) {
 			var image= document.createElement("IMG")
 			image.classList.add("scroller-img");
 			image.classList.add("pic-" + i);
+			//you will need to change this string to the correct file path where your pictures will be coming from.
 			image.src = "./" + pictureArray[i] + ".jpeg";
 			scroller.appendChild(image);
 		}
@@ -60,9 +62,20 @@ var spin = (function scroll(arr) {
 
 		//this is what will change the X offset every 0.1 milliseconds
 		function increment() {
+
 			if(offset < 100 * 30.25) {
-			offset = offset + 3.5;
-			scroller.style.transform = "translateX(-" + offset + "px)";
+				if(offset > 100 * 20) {
+					offset = offset + 2.5;
+				} else if(offset > 100 * 26) {
+				offset = offset + 2;
+				} else {
+					offset = offset + 3;
+				}
+				scroller.style.transform = "translateX(-" + offset + "px)";
+			} else {
+				//this is where you can run your next function when the spinner is done
+				console.log('done');
+				clearInterval(interval);
 			}
 		}
 	}

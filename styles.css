@@ -12,7 +12,7 @@
 
 .round-over {
 	margin-top: 2px;
-	color: #fff;
+	color: #D3D3D3;
 }
 
 .finding-winner {
@@ -24,7 +24,6 @@
 .scroller-container {
 	display: flex;
 	align-items: center;
-	margin-top: 10px;
 	overflow: hidden;
 	height: 70px;
 	width: 100%;
