@@ -1,0 +1,52 @@
+.main-container {
+	width: 550px;
+	background: blue;
+	padding: 10px 15px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 2px;
+}
+
+.round-over {
+	margin-top: 2px;
+}
+
+.finding-winner {
+	margin-top: 2px;
+}
+
+.scroller-container {
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+	overflow: hidden;
+	height: 65px;
+	width: 100%;
+}
+
+.scroller {
+	display: flex;
+	align-items: center;
+	margin-top: 10px;
+	height: 65px;
+	width: 100%;
+	position: relative;
+}
+
+.scroller-img {
+	width: 9.5%;
+	height: 60px;
+	margin-right: 3px;
+}
+
+.pointer {
+	position: relative;
+	left: -48%;
+	width: 5px;
+	height: 57px;
+	margin-top: 10px;
+	z-index: 5;
+	background-color: orange;
+}
