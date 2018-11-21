@@ -3,7 +3,11 @@
 
 //1. Pass your array into the scroll function on line 106
 //2. Call the spin function when you would like to start the spin
-var exampleArray = ['pic1', 0.1, 'pic2', 0.1, 'pic3', 0.1, 'pic4', 0.7, 'pic2']
+
+
+// here is an example array. it may be any length, but must have a name followed by a decimal representing the percentage of slots this user 'owns'
+// the last entry in the array will be the name of the winner.
+var exampleArray = ['pic1', 0.1, 'pic2', 0.1, 'pic3', 0.1, 'pic4', 0.7, 'pic1']
 
 //IIFE to prevent polluting scope. The function will run then save a spin function to the variable spin. You can then call this spin function whenever you would like to start the spin
 var spin = (function scroll(arr) {
@@ -37,7 +41,7 @@ var spin = (function scroll(arr) {
 		pictureArray = shuffle(pictureArray);
 
 		//make sure the winners picture will appear in the winning slot
-		pictureArray.splice(60, 1, arr[arr.length - 1]);
+		pictureArray.splice(78, 1, arr[arr.length - 1]);
 
 		//loop over the array and create an image for each entry
 
@@ -57,27 +61,18 @@ var spin = (function scroll(arr) {
 	//function to start the scrolling animation
 
 	function spin() {
-		var offset = 0;
-		var interval = setInterval(increment, 0.1);
-
+		var randomNum = Math.floor(Math.random()*10); // this will get a number between 1 and 99;
+		// 	randomNum *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
+		// var incrementer = 100;
+		var winArr = [-18,-18,-18,-18,0,18,18,18,18,18]
 		//this is what will change the X offset every 0.1 milliseconds
-		function increment() {
+				var num1 = -4015.199999 + winArr[randomNum];
+				scroller.style.transform = "translateX(" + num1 + "px)"
 
-			if(offset < 100 * 30.25) {
-				if(offset > 100 * 20) {
-					offset = offset + 2.5;
-				} else if(offset > 100 * 26) {
-				offset = offset + 2;
-				} else {
-					offset = offset + 3;
-				}
-				scroller.style.transform = "translateX(-" + offset + "px)";
-			} else {
-				//this is where you can run your next function when the spinner is done
-				console.log('done');
-				clearInterval(interval);
-			}
-		}
+				//You can run your next function inside this setTimeout in replace of the console.log
+				setTimeout(function () {
+        			console.log('done');
+    			}, 4800);
 	}
 
 
