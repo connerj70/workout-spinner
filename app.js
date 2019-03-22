@@ -7,7 +7,23 @@
 
 // here is an example array. it may be any length, but must have a name followed by a decimal representing the percentage of slots this user 'owns'
 // the last entry in the array will be the name of the winner.
-var exampleArray = ['pic1', 0.1, 'pic2', 0.1, 'pic3', 0.1, 'pic4', 0.7, 'pic1']
+var exampleArray =  [
+{
+"name":"arnie3",
+"percentage":0.1,
+"sound": "arnie3"
+},
+{
+"name":"arnie2",
+"percentage":0.1,
+"sound": "arnie2"
+},
+{
+"name":"arnie1",
+"percentage":0.8,
+"sound": "arnie1"
+}
+]
 
 //IIFE to prevent polluting scope. The function will run then save a spin function to the variable spin. You can then call this spin function whenever you would like to start the spin
 var spin = (function scroll(arr) {
@@ -18,22 +34,13 @@ var spin = (function scroll(arr) {
 
 	//the parameter arr will be the array containing the names of the contestants, their percentage of pictures, with the last entry in the array being the winner
 	function fillScroller(arr) {
-		//this is an intermediate array that will contain an array of objects each containing a name and a percentage
-		var slotArray = [];
 		//this array will contain 100 images with the percentage an image appears based on the percentage given in the initial array
-		var pictureArray = [];
-
-
-		//loop over the initial array and create an object for each contestant containing their name and the percentage their picture should appear.
-		for(var j=0; j < arr.length - 1; j = j + 2) {
-			var obj = {name: arr[j], percentage: arr[j + 1]};
-			slotArray.push(obj);
-		}
+		var pictureArray = [];		
 
 		//create an array of length 100 containing pictures of the contestants in proportion to their percentages
-		for(let k=0; k < slotArray.length; k++) {
-			for(let l=0; l<slotArray[k].percentage * 100; l++) {
-				pictureArray.push(slotArray[k].name);
+		for(let k=0; k < arr.length; k++) {
+			for(let l=0; l<arr[k].percentage * 100; l++) {
+				pictureArray.push(arr[k].name);
 			}
 		}
 
@@ -41,7 +48,7 @@ var spin = (function scroll(arr) {
 		pictureArray = shuffle(pictureArray);
 
 		//make sure the winners picture will appear in the winning slot
-		pictureArray.splice(78, 1, arr[arr.length - 1]);
+		pictureArray.splice(78, 1, arr[arr.length - 1].name);
 
 		//loop over the array and create an image for each entry
 
@@ -50,7 +57,7 @@ var spin = (function scroll(arr) {
 			image.classList.add("scroller-img");
 			image.classList.add("pic-" + i);
 			//you will need to change this string to the correct file path where your pictures will be coming from.
-			image.src = "./" + pictureArray[i] + ".jpeg";
+			image.src = "./assets/" + pictureArray[i] + ".jpeg";
 			scroller.appendChild(image);
 		}
 		
@@ -61,6 +68,7 @@ var spin = (function scroll(arr) {
 	//function to start the scrolling animation
 
 	function spin() {
+		var audio;
 		var randomNum = Math.floor(Math.random()*10); // this will get a number between 1 and 99;
 		// 	randomNum *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
 		// var incrementer = 100;
@@ -72,6 +80,8 @@ var spin = (function scroll(arr) {
 				//You can run your next function inside this setTimeout in replace of the console.log
 				setTimeout(function () {
         			console.log('done');
+        			audio = new Audio('./assets/sounds/' + arr1[arr1.length - 1].sound + ".mp3");
+					audio.play();
     			}, 4800);
 	}
 
