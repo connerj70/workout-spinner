@@ -20,8 +20,13 @@ var exampleArray =  [
 },
 {
 "name":"arnie1",
-"percentage":0.8,
+"percentage":0.7,
 "sound": "arnie1"
+},
+{
+"name":"arnie4",
+"percentage":0.1,
+"sound": "arnie4"
 }
 ]
 
