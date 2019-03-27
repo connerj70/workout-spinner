@@ -59,3 +59,26 @@
 	z-index: 5;
 	background-color: orange;
 }
+
+.nono {
+	display: none;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	margin: 0 auto;
+    background: black;
+    color: red;
+    z-index: 10;
+    padding: 30px;
+    width: 0px;
+    transition: width 2s;
+    height: 100%;
+}
+
+.nono h1 {
+	text-align: center;
+}
+
+.nono button {
+	margin: 0 auto;
+}

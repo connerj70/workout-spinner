@@ -41,7 +41,7 @@ var exampleArray =  [
 "sound": "arnie7"
 },{
 "name":"arnie8",
-"percentage":0.1,
+"percentage":0.3,
 "sound": "arnie8"
 }
 ]
@@ -49,7 +49,8 @@ var exampleArray =  [
 //IIFE to prevent polluting scope. The function will run then save a spin function to the variable spin. You can then call this spin function whenever you would like to start the spin
 
 	// arr1 is the array that will be passed to the fillScroller function
-	var arr1 = exampleArray;
+	var arr1 = shuffle(exampleArray);
+	var nono = document.querySelector('.nono');
 
 	var scroller = document.querySelector('.scroller');
 
@@ -86,14 +87,13 @@ var exampleArray =  [
 
 	//function to start the scrolling animation
 
-	fillScroller(exampleArray);
+	fillScroller(arr1);
 
+	function reloadPage() {
+		location.reload();
+	}
 
 	function spin() {
-
-		arr1 = shuffle(arr1);
-
-		fillScroller(arr1);
 
 		var audio;
 		var randomNum = Math.floor(Math.random()*10); // this will get a number between 1 and 99;
@@ -106,10 +106,14 @@ var exampleArray =  [
 
 				//You can run your next function inside this setTimeout in replace of the console.log
 				setTimeout(function () {
-					scroller.transitionDuration = "1s";
+					// scroller.transitionDuration = "1s";
         			audio = new Audio('./assets/sounds/' + arr1[arr1.length - 1].sound + ".mp3");
 					audio.play();
-					scroller.style.transform = 'translateX(0)';
+					setTimeout(function() {
+						nono.style.display = "block";
+						nono.style.width = "100%";
+					}, 500)
+					// scroller.style.transform = 'translateX(0)';
     			}, 4800);
 	}
 
