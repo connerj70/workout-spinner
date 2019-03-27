@@ -26,16 +26,16 @@ var exampleArray =  [
 ]
 
 //IIFE to prevent polluting scope. The function will run then save a spin function to the variable spin. You can then call this spin function whenever you would like to start the spin
-var spin = (function scroll(arr) {
+
 	// arr1 is the array that will be passed to the fillScroller function
-	var arr1 = arr;
+	var arr1 = exampleArray;
 
 	var scroller = document.querySelector('.scroller');
 
 	//the parameter arr will be the array containing the names of the contestants, their percentage of pictures, with the last entry in the array being the winner
 	function fillScroller(arr) {
 		//this array will contain 100 images with the percentage an image appears based on the percentage given in the initial array
-		var pictureArray = [];		
+		var pictureArray = [];
 
 		//create an array of length 100 containing pictures of the contestants in proportion to their percentages
 		for(let k=0; k < arr.length; k++) {
@@ -62,12 +62,18 @@ var spin = (function scroll(arr) {
 		}
 		
 	}
-	fillScroller(arr1);
-
 
 	//function to start the scrolling animation
 
+	fillScroller(exampleArray);
+
+
 	function spin() {
+
+		arr1 = shuffle(arr1);
+
+		fillScroller(arr1);
+
 		var audio;
 		var randomNum = Math.floor(Math.random()*10); // this will get a number between 1 and 99;
 		// 	randomNum *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
@@ -79,9 +85,10 @@ var spin = (function scroll(arr) {
 
 				//You can run your next function inside this setTimeout in replace of the console.log
 				setTimeout(function () {
-        			console.log('done');
+					scroller.transitionDuration = "1s";
         			audio = new Audio('./assets/sounds/' + arr1[arr1.length - 1].sound + ".mp3");
 					audio.play();
+					scroller.style.transform = 'translateX(0)';
     			}, 4800);
 	}
 
@@ -105,7 +112,3 @@ var spin = (function scroll(arr) {
 
 	  return array;
 	}
-
-return spin;
-
-})(exampleArray);
