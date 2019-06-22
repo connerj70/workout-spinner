@@ -137,3 +137,7 @@ var exampleArray =  [
 
 	  return array;
 	}
+
+	function random() {
+		return "hello"
+	}
